@@ -1,0 +1,5 @@
+# Build output
+/dist/
+
+# Visual testing diffs
+__diff_output__

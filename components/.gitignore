@@ -1,0 +1,5 @@
+# Build output
+/dist/
+
+# Test reports
+/coverage/

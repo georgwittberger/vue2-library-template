@@ -1,0 +1,61 @@
+{
+  "name": "vue-library-template-components",
+  "version": "1.0.0",
+  "description": "Vue.js component library template",
+  "author": "Georg Wittberger",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "main": "./dist/main.cjs",
+  "module": "./dist/main.js",
+  "exports": {
+    ".": {
+      "import": "./dist/main.js",
+      "require": "./dist/main.cjs"
+    },
+    "./dist/style.css": {
+      "default": "./dist/style.css"
+    }
+  },
+  "types": "./dist/main.d.ts",
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "dev": "chokidar \"src/**/*\" -c \"pnpm check && pnpm build\"",
+    "check": "vue-tsc --noEmit",
+    "lint": "eslint --ext .js,.ts,.vue .",
+    "lint:fix": "eslint --ext .js,.ts,.vue . --fix",
+    "build": "vite build && vue-tsc --emitDeclarationOnly",
+    "test": "vitest",
+    "test:run": "vitest run --coverage",
+    "ci": "pnpm check && pnpm test:run && pnpm build"
+  },
+  "dependencies": {
+    "vue": "2.7.10"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "7.31.2",
+    "@testing-library/jest-dom": "5.16.5",
+    "@testing-library/user-event": "14.4.3",
+    "@testing-library/vue": "5.8.3",
+    "@types/node": "18.7.15",
+    "@types/testing-library__jest-dom": "5.14.5",
+    "@vitest/coverage-istanbul": "0.23.1",
+    "chokidar-cli": "3.0.0",
+    "typescript": "4.8.2",
+    "vite": "3.1.0",
+    "vite-plugin-vue2": "2.0.2",
+    "vitest": "0.23.1",
+    "vue-template-compiler": "2.7.10",
+    "vue-tsc": "0.40.10"
+  },
+  "peerDependencies": {
+    "vue": "^2.7.0"
+  }
+}

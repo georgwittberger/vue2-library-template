@@ -1,0 +1,42 @@
+{
+  "name": "vue-library-template",
+  "version": "0.0.0",
+  "description": "Vue.js component library project template",
+  "author": "Georg Wittberger",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "components",
+    "storybook"
+  ],
+  "scripts": {
+    "dev": "pnpm --filter={components} run build && pnpm run --parallel --recursive dev",
+    "lint": "pnpm run --parallel --no-bail --recursive lint",
+    "build": "pnpm run --recursive build",
+    "test:run": "pnpm run --recursive test:run",
+    "ci": "pnpm lint && pnpm run --recursive ci",
+    "changeset": "changeset",
+    "prepare:release": "changeset version",
+    "prepare:snapshot": "changeset version --snapshot next",
+    "publish:release": "changeset publish",
+    "publish:snapshot": "changeset publish --tag next"
+  },
+  "devDependencies": {
+    "@changesets/cli": "2.24.4",
+    "@types/node": "18.7.15",
+    "@typescript-eslint/eslint-plugin": "5.36.1",
+    "@typescript-eslint/parser": "5.36.1",
+    "eslint": "8.23.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-vue": "9.4.0",
+    "prettier": "2.7.1",
+    "typescript": "4.8.2",
+    "vue-eslint-parser": "9.0.3"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@testing-library/vue@5.8.3": "patches/@testing-library__vue@5.8.3.patch"
+    }
+  }
+}
