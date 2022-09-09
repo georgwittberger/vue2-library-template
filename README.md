@@ -98,23 +98,38 @@ pnpm changeset
 
 It will ask some questions which workspaces have been changed and generate a Markdown file for each change in `.changeset` subdirectory.
 
-To prepare a stable release run the following command in project root.
+To release a stable version perform the following steps.
 
-```bash
-pnpm prepare:release
-```
+1. Bump package versions and update changelog files by running the following command in project root.
 
-This will bump versions of workspaces according to changes recorded in `.changeset` subdirectory and update `CHANGELOG.md` files accordingly. The updated files should be committed to Git.
+   ```bash
+   pnpm prepare:release
+   ```
 
-After that preparation the production build should be performed using `pnpm build` or `pnpm ci`.
+2. Install dependencies and update lockfile (see [details in PNPM docs](https://pnpm.io/using-changesets#releasing-changes)).
 
-If build succeeds the release can be published by running the following command in project root.
+   ```bash
+   pnpm install
+   ```
 
-```bash
-pnpm publish:release
-```
+3. Commit all updated files to Git.
+4. Perform production build by running the following command in project root.
 
-Git tags created for that release should be pushed using `git push --follow-tags`.
+   ```bash
+   pnpm ci
+   ```
+
+5. If build succeeds publish release by running the following command in project root.
+
+   ```bash
+   pnpm publish:release
+   ```
+
+6. Push Git tags created for release.
+
+   ```bash
+   git push --follow-tags
+   ```
 
 ## Publishing a Snapshot
 
