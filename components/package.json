@@ -37,25 +37,29 @@
     "ci": "pnpm check && pnpm test:run && pnpm build"
   },
   "dependencies": {
-    "vue": "2.7.10"
+    "vue": "^2.7.10"
   },
   "devDependencies": {
-    "@testing-library/dom": "7.31.2",
-    "@testing-library/jest-dom": "5.16.5",
-    "@testing-library/user-event": "14.4.3",
-    "@testing-library/vue": "5.8.3",
-    "@types/node": "18.7.15",
-    "@types/testing-library__jest-dom": "5.14.5",
-    "@vitest/coverage-istanbul": "0.23.1",
-    "chokidar-cli": "3.0.0",
-    "typescript": "4.8.2",
-    "vite": "3.1.0",
-    "vite-plugin-vue2": "2.0.2",
-    "vitest": "0.23.1",
-    "vue-template-compiler": "2.7.10",
-    "vue-tsc": "0.40.10"
+    "@testing-library/dom": "^7.31.2",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/user-event": "^14.4.3",
+    "@testing-library/vue": "^5.8.3",
+    "@types/node": ">=16.0.0",
+    "@types/testing-library__jest-dom": "^5.14.5",
+    "@vitest/coverage-istanbul": "^0.23.1",
+    "chokidar-cli": "^3.0.0",
+    "typescript": "^4.8.3",
+    "vite": "^3.1.0",
+    "vite-plugin-vue2": "^2.0.2",
+    "vitest": "^0.23.1",
+    "vue-template-compiler": "^2.7.10",
+    "vue-tsc": "^0.40.13"
   },
   "peerDependencies": {
     "vue": "^2.7.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "pnpm": ">=7.0.0"
   }
 }
