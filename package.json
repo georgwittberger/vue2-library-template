@@ -22,17 +22,17 @@
     "publish:snapshot": "changeset publish --tag next"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.24.4",
+    "@changesets/cli": "^2.25.2",
     "@types/node": ">=16.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.36.1",
-    "@typescript-eslint/parser": "^5.36.1",
-    "eslint": "^8.23.0",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
+    "eslint": "^8.27.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-vue": "^9.4.0",
+    "eslint-plugin-vue": "^9.7.0",
     "prettier": "^2.7.1",
-    "typescript": "^4.8.3",
-    "vue-eslint-parser": "^9.0.3"
+    "typescript": "^4.8.4",
+    "vue-eslint-parser": "^9.1.0"
   },
   "engines": {
     "node": ">=16.0.0",
