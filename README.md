@@ -164,6 +164,10 @@ import('vue-library-template-components/dist/components/VideoPlayer').then(
 );
 ```
 
+The following diagram illustrates how components will be bundled by the application depending on in which page they are used.
+
+![Code Splitting Diagram](./docs/code-splitting.excalidraw.svg)
+
 ### Type Declarations
 
 Library build generates TypeScript declaration files for components using `vue-tsc`. This enables type safety for component props in applications.
