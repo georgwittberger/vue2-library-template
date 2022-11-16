@@ -1,14 +1,14 @@
 /// <reference types="vitest" />
+import vue from '@vitejs/plugin-vue2';
 import { resolve } from 'node:path';
 import type { ModuleFormat } from 'rollup';
 import { defineConfig } from 'vite';
-import { createVuePlugin } from 'vite-plugin-vue2';
 import { createEntrypoints } from './build/entrypoints';
 import packageJson from './package.json';
 
 // More on Vite configuration: https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [createVuePlugin()],
+  plugins: [vue()],
   build: {
     // More on Vite library mode: https://vitejs.dev/guide/build.html#library-mode
     lib: {
