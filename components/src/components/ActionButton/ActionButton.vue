@@ -13,6 +13,9 @@
 import { defineComponent, PropType } from 'vue';
 import { ActionButtonVariant } from './ActionButton.model';
 
+/**
+ * Action button component.
+ */
 export default defineComponent({
   name: 'ActionButton',
   props: {

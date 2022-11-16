@@ -11,18 +11,20 @@
     "CHANGELOG.md",
     "README.md"
   ],
-  "main": "./dist/main.cjs",
-  "module": "./dist/main.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "exports": {
     ".": {
-      "import": "./dist/main.js",
-      "require": "./dist/main.cjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
-    "./dist/style.css": {
-      "default": "./dist/style.css"
-    }
+    "./dist/components/*": {
+      "import": "./dist/components/*/index.js",
+      "require": "./dist/components/*/index.cjs"
+    },
+    "./dist/assets/*": "./dist/assets/*"
   },
-  "types": "./dist/main.d.ts",
+  "types": "./dist/index.d.ts",
   "sideEffects": [
     "*.css"
   ],
@@ -37,6 +39,7 @@
     "ci": "pnpm check && pnpm test:run && pnpm build"
   },
   "dependencies": {
+    "video.js": "^7.20.3",
     "vue": "^2.7.14"
   },
   "devDependencies": {
@@ -46,8 +49,10 @@
     "@testing-library/vue": "^5.8.3",
     "@types/node": ">=16.0.0",
     "@types/testing-library__jest-dom": "^5.14.5",
+    "@types/video.js": "^7.3.49",
     "@vitest/coverage-istanbul": "^0.23.4",
     "chokidar-cli": "^3.0.0",
+    "rollup": "^2.79.1",
     "typescript": "^4.8.4",
     "vite": "^3.2.3",
     "vite-plugin-vue2": "^2.0.2",

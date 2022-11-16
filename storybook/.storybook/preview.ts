@@ -1,4 +1,4 @@
-import 'vue-library-template-components/dist/style.css';
+import 'vue-library-template-components/dist/assets/style.css';
 
 export const parameters = {
   controls: {
@@ -13,7 +13,7 @@ export const parameters = {
     // More on sorting stories: https://storybook.js.org/docs/vue/writing-stories/naming-components-and-hierarchy#sorting-stories
     storySort: {
       method: 'alphabetical',
-      order: ['Overview', 'Atoms'],
+      order: ['Overview', 'Atoms', 'Molecules'],
     },
   },
   // More on a11y tests configuration: https://storybook.js.org/docs/vue/writing-tests/accessibility-testing#configure

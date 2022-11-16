@@ -3,3 +3,6 @@
 
 # Test reports
 /coverage/
+
+# Package tarballs
+/*.tgz

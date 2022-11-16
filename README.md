@@ -8,9 +8,9 @@
 - ⚡ [Vite](https://vitejs.dev/) for library build
 - 🧪 [Vitest](https://vitest.dev/) and [Vue Testing Library](https://testing-library.com/docs/vue-testing-library/intro/) for unit testing
 - 📕 [Storybook](https://storybook.js.org/) for component presentation
-- 🔍 [Rendering smoke tests](https://storybook.js.org/docs/vue/writing-tests/test-runner) for Storybook stories
+- 🔥 [Rendering smoke tests](https://storybook.js.org/docs/vue/writing-tests/test-runner) for Storybook stories
 - 👀 [Visual regression tests](https://storybook.js.org/docs/vue/writing-tests/visual-testing) for Storybook stories
-- 🧑‍🦽 [Accessibility tests](https://storybook.js.org/docs/vue/writing-tests/accessibility-testing) for Storybook stories
+- ♿ [Accessibility tests](https://storybook.js.org/docs/vue/writing-tests/accessibility-testing) for Storybook stories
 - ✅ [TypeScript](https://www.typescriptlang.org/) for static type checking
 - 🔬 [ESLint](https://eslint.org/) for static code analysis
 - 💅 [Prettier](https://prettier.io/) for code formatting
@@ -146,7 +146,23 @@ This will include timestamps in bumped versions and publish packages with dist-t
 
 ### Tree-Shakable Library Build
 
-Library build sets Rollup option `output.preserveModules: true` to preserve separate module files. This ensures that module bundlers like Rollup and Webpack can drop components which are not used later on in applications.
+Library build generates a main module with exports of all components and separate submodules for each individual component. This allows unused components to be removed from JavaScript bundles in applications.
+
+Applications can use static imports from the main module:
+
+```js
+// Only used exports will be included in application bundle.
+import { ActionButton } from 'vue-library-template-components';
+```
+
+Applications can use dynamic imports from specific submodules as needed:
+
+```js
+// Only requested component module will be included in application bundle.
+import('vue-library-template-components/dist/components/VideoPlayer').then(
+  ({ VideoPlayer }) => VideoPlayer
+);
+```
 
 ### Type Declarations
 
