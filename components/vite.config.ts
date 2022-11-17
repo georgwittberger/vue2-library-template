@@ -29,8 +29,6 @@ export default defineConfig({
       // More on rollup.js output: https://rollupjs.org/guide/en/#configuration-files
       output: (['es', 'cjs'] as ModuleFormat[]).map((format) => ({
         format,
-        exports: 'named' as const,
-        interop: 'esModule' as const,
         hoistTransitiveImports: false,
         assetFileNames: 'assets/[name].[ext]',
         chunkFileNames: `chunks/[name].${format === 'cjs' ? 'cjs' : 'js'}`,

@@ -144,18 +144,23 @@ This will include timestamps in bumped versions and publish packages with dist-t
 
 ## Notable Concepts
 
-### Tree-Shakable Library Build
+### Code Splitting and Tree-Shaking
 
-Library build generates a main module with exports of all components and separate submodules for each individual component. This allows unused components to be removed from JavaScript bundles in applications.
+Library build generates a main module with exports of all components and separate submodules for each individual component. This code splitting allows bundlers like Webpack and rollup.js to perform build optimizations in applications:
 
-Applications can use static imports from the main module:
+- Each component can be bundled in the JavaScript chunk where it makes sense depending on its usage (see diagram below).
+- Unused components are eliminated from application code.
+
+![Code Splitting Diagram](./docs/code-splitting.excalidraw.svg)
+
+Applications can either use static imports from the main module...
 
 ```js
 // Only used exports will be included in application bundle.
 import { ActionButton } from 'vue-library-template-components';
 ```
 
-Applications can use dynamic imports from specific submodules as needed:
+Or they can use dynamic imports from specific submodules as needed.
 
 ```js
 // Only requested component module will be included in application bundle.
@@ -164,13 +169,29 @@ import('vue-library-template-components/dist/components/VideoPlayer').then(
 );
 ```
 
-The following diagram illustrates how components will be bundled by the application depending on in which page they are used.
+_Note: Dynamic imports should always use specific component submodules because they cannot benefit from tree-shaking._
 
-![Code Splitting Diagram](./docs/code-splitting.excalidraw.svg)
+### Bundling Component Styles
+
+Components have different options to contribute styles.
+
+- `<style>` block in the component file. This will be bundled in `style.css`.
+- Plain CSS file import in `<script>` block: `import 'other-styles.css';`. This will be bundled in `style.css`.
+- Client-side style injection in `<script>` block (see below). This embeds CSS code in component module itself rather than bundling it in `style.css`.
+
+Components requiring extensive CSS code should import non-critical stylesheets using `?inline` suffix and inject the code using `style-inject` helper.
+
+```js
+import styleInject from 'style-inject';
+import videojsStylesheet from 'video.js/dist/video-js.min.css?inline';
+styleInject(videojsStylesheet);
+```
+
+_Note: Style injection is performed client-side once the component module is loaded. If the component is rendered server-side this can result in a flash of unstyled content (FOUC) on page load._
 
 ### Type Declarations
 
-Library build generates TypeScript declaration files for components using `vue-tsc`. This enables type safety for component props in applications.
+Library build generates TypeScript declaration files for components using `vue-tsc`. This enables JSDoc and type checking for component props in applications.
 
 ### Storybook Type Checking
 

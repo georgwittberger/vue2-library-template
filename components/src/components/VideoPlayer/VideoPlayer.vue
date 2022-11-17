@@ -3,8 +3,9 @@
 </template>
 
 <script lang="ts">
+import styleInject from 'style-inject';
 import videojs, { VideoJsPlayer, VideoJsPlayerOptions } from 'video.js';
-import 'video.js/dist/video-js.css';
+import videojsStylesheet from 'video.js/dist/video-js.min.css?inline';
 import {
   defineComponent,
   onBeforeUnmount,
@@ -13,6 +14,8 @@ import {
   ref,
   watch,
 } from 'vue';
+
+styleInject(videojsStylesheet);
 
 /**
  * Video player component.

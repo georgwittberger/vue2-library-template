@@ -12,6 +12,7 @@
   "scripts": {
     "dev": "pnpm --filter={components} run build && pnpm run --parallel --recursive dev",
     "lint": "pnpm run --parallel --no-bail --recursive lint",
+    "lint:fix": "pnpm run --recursive lint:fix",
     "build": "pnpm run --recursive build",
     "test:run": "pnpm run --recursive test:run",
     "ci": "pnpm lint && pnpm run --recursive ci",
