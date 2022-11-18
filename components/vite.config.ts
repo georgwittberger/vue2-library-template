@@ -1,23 +1,32 @@
 /// <reference types="vitest" />
 import vue from '@vitejs/plugin-vue2';
-import { resolve } from 'node:path';
+import { basename, resolve } from 'node:path';
 import type { ModuleFormat } from 'rollup';
 import { defineConfig } from 'vite';
-import { createEntrypoints } from './build/entrypoints';
+import { subpackages } from './build/subpackages';
 import packageJson from './package.json';
 
 // More on Vite configuration: https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    // More on Vue.js plugin: https://github.com/vitejs/vite-plugin-vue2
+    vue(),
+    // Generate separate subpackages for components to enable code splitting.
+    subpackages({
+      sourceDir: 'src',
+      modulePatterns: ['components/**/index.ts'],
+      packageJson: (info) => ({
+        name: `${packageJson.name}-${basename(info.dir).toLowerCase()}`,
+        version: packageJson.version,
+        types: './index.d.ts',
+      }),
+    }),
+  ],
   build: {
     // More on Vite library mode: https://vitejs.dev/guide/build.html#library-mode
     lib: {
-      // Create multiple entrypoints to build component chunks.
-      // More on code splitting: https://rollupjs.org/guide/en/#code-splitting
-      entry: createEntrypoints({
-        sourceDirectoryPath: resolve(__dirname, 'src'),
-        componentsDirectoryName: 'components',
-      }),
+      entry: { index: resolve(__dirname, 'src/index.ts') },
+      name: 'VueLibraryTemplate',
     },
     minify: false,
     target: 'es2018',
