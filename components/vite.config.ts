@@ -18,6 +18,7 @@ export default defineConfig({
       packageJson: (info) => ({
         name: `${packageJson.name}-${basename(info.dir).toLowerCase()}`,
         version: packageJson.version,
+        type: 'module',
         types: './index.d.ts',
       }),
     }),
