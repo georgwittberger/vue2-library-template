@@ -165,15 +165,10 @@ const writePackageJson = async (
     ? JSON.parse(await readFile(packageJsonPath, 'utf8'))
     : {};
 
-  switch (outputOptions.format) {
-    case 'es':
-      packageJson.module = `./${outputFile}`;
-      break;
-    case 'cjs':
-    case 'umd':
-      packageJson.main = `./${outputFile}`;
-      break;
-    default:
+  if (outputOptions.format === 'es') {
+    packageJson.module = `./${outputFile}`;
+  } else if (outputOptions.format === 'cjs' || outputOptions.format === 'umd') {
+    packageJson.main = `./${outputFile}`;
   }
 
   if (typeof pluginOptions.packageJson === 'function') {
