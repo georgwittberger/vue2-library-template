@@ -3,7 +3,8 @@ import vue from '@vitejs/plugin-vue2';
 import { basename, resolve } from 'node:path';
 import type { ModuleFormat } from 'rollup';
 import { defineConfig } from 'vite';
-import { subpackages } from './build/subpackages';
+import { entrypoints } from './build/entrypoints';
+import { generatePackageJson } from './build/generate-package-json';
 import packageJson from './package.json';
 
 // More on Vite configuration: https://vitejs.dev/config/
@@ -11,11 +12,15 @@ export default defineConfig({
   plugins: [
     // More on Vue.js plugin: https://github.com/vitejs/vite-plugin-vue2
     vue(),
-    // Generate separate subpackages for components to enable code splitting.
-    subpackages({
-      sourceDir: 'src',
-      modulePatterns: ['components/**/index.ts'],
-      packageJson: (info) => ({
+    // Generate separate chunks for components to enable code splitting.
+    entrypoints({
+      baseDir: 'src',
+      entryFilePatterns: ['components/**/index.ts'],
+    }),
+    // Generate package.json for each separate component chunk.
+    generatePackageJson({
+      chunkFilePatterns: ['components/**/index.*'],
+      additionalEntries: (info) => ({
         name: `${packageJson.name}-${basename(info.dir).toLowerCase()}`,
         version: packageJson.version,
         type: 'module',
