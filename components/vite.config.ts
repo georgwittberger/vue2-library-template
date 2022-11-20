@@ -14,7 +14,7 @@ export default defineConfig({
     vue(),
     // Generate separate chunks for components to enable code splitting.
     entrypoints({
-      baseDir: 'src',
+      baseDir: resolve(__dirname, 'src'),
       entryFilePatterns: ['components/**/index.ts'],
     }),
     // Generate package.json for each separate component chunk.
