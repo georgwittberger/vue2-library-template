@@ -30,7 +30,7 @@
     "check": "vue-tsc --noEmit",
     "lint": "eslint --ext .js,.ts,.vue .",
     "lint:fix": "eslint --ext .js,.ts,.vue . --fix",
-    "build": "vite build && vue-tsc --emitDeclarationOnly",
+    "build": "vite build && vue-tsc --project tsconfig.build.json",
     "test": "vitest",
     "test:run": "vitest run --coverage",
     "ci": "pnpm check && pnpm test:run && pnpm build"
@@ -61,7 +61,7 @@
     "vite": "^3.2.3",
     "vitest": "^0.23.4",
     "vue-template-compiler": "^2.7.14",
-    "vue-tsc": "^0.40.13"
+    "vue-tsc": "^1.0.9"
   },
   "peerDependencies": {
     "vue": "^2.7.0"
