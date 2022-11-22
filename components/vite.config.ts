@@ -47,6 +47,8 @@ export default defineConfig({
         assetFileNames: 'assets/[name].[ext]',
         chunkFileNames: `chunks/[name].${format === 'cjs' ? 'cjs' : 'js'}`,
         entryFileNames: `[name].${format === 'cjs' ? 'cjs' : 'js'}`,
+        // Disable import hoisting to facilitate tree-shaking.
+        hoistTransitiveImports: false,
       })),
     },
   },
