@@ -34,7 +34,7 @@ export default defineConfig({
       name: 'VueLibraryTemplate',
     },
     minify: false,
-    target: 'es2018',
+    target: ['chrome80', 'edge80', 'firefox80', 'safari12'],
     rollupOptions: {
       // Externalize all runtime/peer dependencies declared in package.json
       // More on external modules: https://rollupjs.org/guide/en/#external
