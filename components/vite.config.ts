@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
 import vue from '@vitejs/plugin-vue2';
-import { basename, resolve } from 'node:path';
+import { resolve } from 'node:path';
 import type { ModuleFormat } from 'rollup';
 import { defineConfig } from 'vite';
 import { entrypoints } from './build/entrypoints';
@@ -20,12 +20,11 @@ export default defineConfig({
     // Generate package.json for each separate component chunk.
     generatePackageJson({
       chunkFilePatterns: ['components/**/index.*'],
-      additionalEntries: (info) => ({
-        name: `${packageJson.name}-${basename(info.dir).toLowerCase()}`,
-        version: packageJson.version,
+      additionalEntries: {
+        private: true,
         type: 'module',
         types: './index.d.ts',
-      }),
+      },
     }),
   ],
   build: {
@@ -37,9 +36,12 @@ export default defineConfig({
     minify: false,
     target: 'es2018',
     rollupOptions: {
-      // Externalize all runtime dependencies declared in package.json
+      // Externalize all runtime/peer dependencies declared in package.json
       // More on external modules: https://rollupjs.org/guide/en/#external
-      external: Object.keys(packageJson.dependencies || {}),
+      external: [
+        ...Object.keys(packageJson.dependencies || {}),
+        ...Object.keys(packageJson.peerDependencies || {}),
+      ],
       // Output as ES modules (*.js) and CommonJS modules (*.cjs)
       // More on rollup.js output: https://rollupjs.org/guide/en/#configuration-files
       output: (['es', 'cjs'] as ModuleFormat[]).map((format) => ({
