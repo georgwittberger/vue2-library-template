@@ -25,17 +25,17 @@ const metadata: Meta<ActionButtonStoryArgs> = {
       type: { name: 'string', required: false },
       control: 'radio',
       options: [
-        ActionButtonVariant.primary,
-        ActionButtonVariant.secondary,
-        ActionButtonVariant.default,
-      ],
+        'primary',
+        'secondary',
+        'default',
+      ] satisfies ActionButtonVariant[],
       table: {
         type: {
           summary: 'string',
           detail:
-            'One of the variant names defined by ActionButtonVariant enum',
+            'One of the variant names defined by ActionButtonVariant type',
         },
-        defaultValue: { summary: ActionButtonVariant.default },
+        defaultValue: { summary: 'default' satisfies ActionButtonVariant },
         category: StoryArgCategory.Props,
       },
     },
@@ -77,18 +77,18 @@ const Template: StoryFn<ActionButtonStoryArgs> = (_args, { argTypes }) => ({
 export const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/vue/writing-stories/args
 Primary.args = {
-  variant: ActionButtonVariant.primary,
+  variant: 'primary',
   slotDefault: 'Primary Button',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  variant: ActionButtonVariant.secondary,
+  variant: 'secondary',
   slotDefault: 'Secondary Button',
 };
 
 export const Default = Template.bind({});
 Default.args = {
-  variant: ActionButtonVariant.default,
+  variant: 'default',
   slotDefault: 'Default Button',
 };

@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/vue';
 import { describe, expect, it, vi } from 'vitest';
-import { ActionButtonVariant } from './ActionButton.model';
+import type { ActionButtonVariant } from './ActionButton.model';
 import ActionButton from './ActionButton.vue';
 
 describe('ActionButton', () => {
@@ -17,10 +17,10 @@ describe('ActionButton', () => {
     expect(screen.getByRole('button')).toHaveTextContent('Test Caption');
   });
 
-  it.each([
-    ['action-button--default', ActionButtonVariant.default],
-    ['action-button--primary', ActionButtonVariant.primary],
-    ['action-button--secondary', ActionButtonVariant.secondary],
+  it.each<[string, ActionButtonVariant]>([
+    ['action-button--default', 'default'],
+    ['action-button--primary', 'primary'],
+    ['action-button--secondary', 'secondary'],
   ])('should render class "%s" when variant is "%s"', (className, variant) => {
     render(ActionButton, {
       propsData: { variant },

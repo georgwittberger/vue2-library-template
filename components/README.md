@@ -39,16 +39,11 @@ Your library introduction here.
    ```html
    <!-- MyComponent.vue -->
    <template>
-     <ActionButton :variant="ActionButtonVariant.primary">
-       Click me!
-     </ActionButton>
+     <ActionButton variant="primary">Click me!</ActionButton>
    </template>
 
    <script lang="ts" setup>
-     import {
-       ActionButton,
-       ActionButtonVariant,
-     } from 'vue-library-template-components';
+     import { ActionButton } from 'vue-library-template-components';
    </script>
    ```
 

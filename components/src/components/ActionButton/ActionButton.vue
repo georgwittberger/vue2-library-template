@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { ActionButtonVariant } from './ActionButton.model';
+import type { ActionButtonVariant } from './ActionButton.model';
 
 /**
  * Action button component.
@@ -24,7 +24,7 @@ export default defineComponent({
      */
     variant: {
       type: String as PropType<ActionButtonVariant>,
-      default: ActionButtonVariant.default,
+      default: 'default' satisfies ActionButtonVariant,
     },
   },
 });

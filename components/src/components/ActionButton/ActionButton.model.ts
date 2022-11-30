@@ -1,5 +1,1 @@
-export enum ActionButtonVariant {
-  default = 'default',
-  primary = 'primary',
-  secondary = 'secondary',
-}
+export type ActionButtonVariant = 'default' | 'primary' | 'secondary';
