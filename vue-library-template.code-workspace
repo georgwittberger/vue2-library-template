@@ -1,4 +1,3 @@
 {
-  "folders": [{ "path": "components" }, { "path": "storybook" }],
-  "settings": { "jest.autoRun": "off" }
+  "folders": [{ "path": "components" }, { "path": "storybook" }]
 }
