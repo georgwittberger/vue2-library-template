@@ -5,18 +5,17 @@
   "author": "Georg Wittberger",
   "license": "MIT",
   "private": true,
-  "type": "module",
   "files": [
     "dist",
     "CHANGELOG.md",
     "README.md"
   ],
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
     },
     "./dist/components/*": "./dist/components/*",
     "./dist/assets/*": "./dist/assets/*"

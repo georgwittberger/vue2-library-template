@@ -20,11 +20,7 @@ export default defineConfig({
     // Generate package.json for each separate component chunk.
     generatePackageJson({
       chunkFilePatterns: ['components/**/index.*'],
-      additionalEntries: {
-        private: true,
-        type: 'module',
-        types: './index.d.ts',
-      },
+      additionalEntries: { private: true, types: './index.d.ts' },
     }),
   ],
   build: {
@@ -47,10 +43,12 @@ export default defineConfig({
       output: (['es', 'cjs'] as ModuleFormat[]).map((format) => ({
         format,
         assetFileNames: 'assets/[name].[ext]',
-        chunkFileNames: `chunks/[name].${format === 'cjs' ? 'cjs' : 'js'}`,
-        entryFileNames: `[name].${format === 'cjs' ? 'cjs' : 'js'}`,
+        chunkFileNames: `chunks/[name].${format}.js`,
+        entryFileNames: `[name].${format}.js`,
         // Disable import hoisting to facilitate tree-shaking.
         hoistTransitiveImports: false,
+        // Enable helper functions for default/namespace imports in CommonJS output.
+        interop: 'auto',
       })),
     },
   },
